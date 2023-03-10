@@ -298,8 +298,7 @@ public class SeleniumFunctions implements ITestToolFunctions {
 				_driver.close();
 			}
 
-			System.setProperty("webdriver.ie.driver", System.getProperty("user.dir") + File.separator + "DriverSelenium"
-					+ File.separator + "IEDriverServer.exe");
+			WebDriverManager.iedriver().setup();
 			_driver = new InternetExplorerDriver();
 			break;
 
@@ -308,9 +307,9 @@ public class SeleniumFunctions implements ITestToolFunctions {
 				_driver.quit();
 				_driver.close();
 			}
-
-			System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + File.separator
-					+ "DriverSelenium" + File.separator + "geckodriver.exe");
+			
+			WebDriverManager.firefoxdriver().setup();
+			
 			_driver = new FirefoxDriver();
 
 			break;

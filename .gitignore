@@ -1,3 +1,6 @@
 /target/
 #Properties
-*.properties
+.properties
+
+# Ignora archivos de configs
+configs/

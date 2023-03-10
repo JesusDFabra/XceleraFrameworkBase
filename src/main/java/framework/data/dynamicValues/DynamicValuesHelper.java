@@ -45,7 +45,6 @@ public class DynamicValuesHelper {
 			toCache = true;
 		}
 
-	
 		if (value.contains("#DynamicAlias=")) {
 			if (value.indexOf("|") > 0)
 				value = value.substring(value.indexOf("#DynamicAlias=") + 14, value.indexOf("|"));
@@ -63,102 +62,6 @@ public class DynamicValuesHelper {
 		if (value.startsWith("@")) {
 			DynamicValuesExcel valuesExcel = new DynamicValuesExcel();
 			value = valuesExcel.getValue(1, value);
-		}
-
-		// {{dataCorrente}}
-		else if (value.equals("{{dataCorrente}}") || value.equals("{{quotationDate}}")) { //$NON-NLS-1$
-			SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
-			value = formatador.format(c.getTime()).toString();
-			System.out.println(value);
-		}
-		// {{dataUmAnoDataCorrente}}
-		else if (value.equals("{{dataUmAnoDataCorrente}}") || value.equals("{{quotationFinalDate}}")) { //$NON-NLS-1$
-			SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
-			c.getTime().toString();
-			c.setTime(c.getTime());
-			c.add(Calendar.YEAR, 1);
-			value = formatador.format(c.getTime()).toString();
-			System.out.println(value);
-		}
-		// melhorData
-		else if (value.equals("{{melhorData}}")) { //$NON-NLS-1$
-			SimpleDateFormat formatador = new SimpleDateFormat("dd");
-			c.getTime().toString();
-			c.setTime(c.getTime());
-			c.add(Calendar.DAY_OF_MONTH, 1);
-			installmentDay = Integer.parseInt(formatador.format(c.getTime()));
-			System.out.println(installmentDay);
-		}
-		// dateValidityQuotation
-		else if (value.equals("{{dateValidityQuotation}}")) { //$NON-NLS-1$
-			SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
-			c.getTime().toString();
-			c.setTime(c.getTime());
-			c.add(Calendar.DAY_OF_MONTH, 30);
-			value = formatador.format(c.getTime()).toString();
-			System.out.println(value);
-		}
-
-		// dateFirstPayment
-		else if (value.equals("{{dateFirstPayment}}")) { //$NON-NLS-1$
-			SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
-			c.getTime().toString();
-			c.setTime(c.getTime());
-			c.add(Calendar.DAY_OF_MONTH, 7);
-			value = formatador.format(c.getTime()).toString();
-			dateFirstPayment = value;
-			System.out.println(value);
-		}
-
-		// dateFirstPayment30
-		else if (value.equals("{{dateFirstPayment30}}")) { //$NON-NLS-1$
-			SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
-			c.getTime().toString();
-			c.setTime(c.getTime());
-			c.add(Calendar.DAY_OF_MONTH, 30);
-			value = formatador.format(c.getTime()).toString();
-			dateFirstPayment = value;
-			System.out.println(value);
-		}
-
-		// {{dateFirstPayment-7}}
-		else if (value.equals("{{dateFirstPayment-7}}")) { //$NON-NLS-1$
-			SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
-			c.getTime().toString();
-			c.setTime(c.getTime());
-			c.add(Calendar.DAY_OF_MONTH, -7);
-			value = formatador.format(c.getTime()).toString();
-			dateFirstPayment = value;
-			System.out.println(value);
-		}
-
-		// dateFirstInstallment
-		else if (value.equals("{{dateFirstInstallment}}")) { //$NON-NLS-1$
-			SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
-			c.getTime().toString();
-			c.setTime(c.getTime());
-			c.add(Calendar.DAY_OF_MONTH, 37);
-			value = formatador.format(c.getTime()).toString();
-			dateFirstInstallment = value;
-			System.out.println(value);
-		}
-
-		else if (value.equals("{{SUCURSAL}}")) {
-			value = executionConfigs.get("Custom.SUCURSAL");
-		} else if (value.equals("{{sucursalCode}}")) {
-			value = executionConfigs.get("Custom.sucursalCode");
-		} else if (value.equals("{{SUSEP}}")) {
-			value = executionConfigs.get("Custom.SUSEP");
-		} else if (value.equals("{{susepCode}}")) {
-			value = executionConfigs.get("Custom.susepCode");
-		} else if (value.equals("{{MATRICULA}}")) {
-			value = executionConfigs.get("Custom.MATRICULA");
-		} else if (value.equals("{{AGENCIA}}")) {
-			value = executionConfigs.get("Custom.AGENCIA");
-		} else if (value.equals("{{PAB}}")) {
-			value = executionConfigs.get("Custom.PAB");
-		} else if (value.equals("{{idOffer}}")) {
-			value = RestWebService.idOffer;
 		}
 
 		else if (value.toLowerCase().equals("#day")) { //$NON-NLS-1$

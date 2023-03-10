@@ -274,25 +274,4 @@ public class DynamicValuesCustomData {
 		return builder.toString();
 	}
 
-	public static String insereValorModal(String attach) {
-		if (attach.contains("cobertura")) { // campo cobertura
-			return "//*[@id='p-flex-cobertura-" + Custom.colIdent + "']";
-		} else if (attach.contains("oferta")) { // campo oferta
-			return "//*[@id='p-flex-oferta-" + Custom.colIdent + "']";
-		} else if (attach.contains("corrente")) { // campo conta corrente
-			return "//*[@id='p-flex-conta-corrente-" + Custom.colIdent + "']";
-		} else if (attach.contains("comissao")) { // campo comissão
-			return "//*[@id='p-flex-comissao-" + Custom.colIdent + "']";
-		} else if (attach.contains("materiais")) { // campo danos materiais
-			return "//*[@id='p-flex-danos-materiais-" + Custom.colIdent + "']";
-		} else if (attach.contains("corporais")) { // campo danos corporais
-			return "//*[@id='p-flex-danos-corporais-" + Custom.colIdent + "']";
-		} else if (attach.contains("invalidez")) { // campo app morte invalidez
-			return "//*[@id='p-flex-app-morte-invalidez-" + Custom.colIdent + "']";
-		} else if (attach.contains("ver-mais")) {
-			return "//*[@id='p-flex-btn-ver-mais-" + Custom.colIdent + "']";
-		} else {
-			return "";
-		}
-	}
 }

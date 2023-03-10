@@ -70,87 +70,6 @@ public class Custom {
 	boolean isWindows = System.getProperty("os.name").toLowerCase().contains("windows");
 
 
-
-	public static String metodoPagamentoICATU = "";
-	public static String numCNPJICATU = "";
-	public static String nomeICATU = "";
-	public static String numCotacao = "";
-	public static String numCotacao1 = "";
-	public static String numCot = "";
-	public static String numPropostaCompleto = "";
-	public static String numPropostaPat = "";
-	public static String codEmpresa = "";
-	public static String sucursal = "";
-	public static String carteira = "";
-	public static String nome = "";
-	public static String numProposta = "";
-	public static String numPropostaAuto = "";
-	public static String cpfCotacao = "";
-	public static String cnpjCotacao = "";
-	public static String nomeCotacao = "";
-	public static String valorPremio = "";
-	public static String valorPremioLiquido = "";
-	public static String franquia = "";
-	public static String valorTaxaSeguro = "";
-	public static String codProduto = "";
-	public static String danosMateriais = "";
-	public static String danosCorporais = "";
-	public static String appMorteInvalidez = "";
-	public static String dm = "";
-	public static String dc = "";
-	public static String app = "";
-	public static String valida = "";
-	public static String excluido = "";
-	public static String cotAutoPerfil = "";
-	public static String cotExclusiva = "";
-	public static String cotFit = "";
-	public static String cotFlex = "";
-
-	public static String zero;
-	public static String preco1;
-	public static String preco2;
-	public static String preco3;
-	public static String ordemPreco1;
-	public static String ordemPreco2;
-	public static String ordemPreco3;
-	public static String ordemPreco4;
-	public static String valPreco;
-	public static String validarPreco;
-
-	public static String erro1 = "";
-	public static String erro2 = "";
-	public static String erro3 = "";
-	public static String erro4 = "";
-
-	public static String cpf = "";
-
-	public static String busca = "";
-
-	public static String colText = "";
-	public static int colIdent;
-
-	public static String copia = null;
-	public int contHans = 0;
-
-	public static String numCorretorHANS = "";
-	public static String numeroPropostaHANS = "";
-
-	public int countBtnImpressao = 0;
-	public int countBtn = 0;
-	private static String jsonCompare = null;
-	private static JSONObject jsonGabarito = null;
-	private static JSONObject jsonMongo = null;
-
-	public static String numApolice = "";
-	public static String CPFCorretor = "";
-	public static String tipoPessoa = "";
-
-	public static String descrSinistro;
-	static Integer cotacao1 = 0;
-	static String premio1 = "";
-
-	static String clusterCanivete = "A";
-
 	public Custom(ITestToolFunctions testToolFunctions, Map<String, String> executionConfigs,
 			ScreenshotHelper screenshotHelper) {
 		_testToolFunctions = testToolFunctions;
@@ -173,9 +92,6 @@ public class Custom {
 			break;
 		case 449:
 			toUrl();
-			break;
-		case 451:
-			switchWindowSinistro();
 			break;
 		case 531:
 			clickAutoIt();
@@ -250,21 +166,5 @@ public class Custom {
 			throw e;
 		}
 	}
-
-	private void switchWindowSinistro() throws Exception {
-		try {
-			_testToolFunctions.switchWindowSinistro();
-		} catch (Exception e) {
-			String methodName = new Object() {
-			}.getClass().getEnclosingMethod().getName();
-			String comment = GeneralHelper.getCommentError(methodName, e.getMessage());
-
-			ExecutionStatusHelper helper = new ExecutionStatusHelper();
-			helper.setStatusErrorOnProcedure(_procedure, TypeError.OperationalError, comment);
-
-			throw e;
-		}
-	}
-
 
 }

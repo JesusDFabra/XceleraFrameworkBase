@@ -44,7 +44,7 @@ public class AutoItFunctions implements ITestToolFunctions {
 				File file = new File("lib", "jacob-1.19-x64.dll"); // path to the jacob dll
 				System.setProperty(LibraryLoader.JACOB_DLL_PATH, file.getAbsolutePath());
 
-				autoIt = new AutoItX();
+//				autoIt = new AutoItX();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -7,7 +7,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.jacob.com.LibraryLoader;
@@ -44,7 +43,7 @@ public class AutoItFunctions implements ITestToolFunctions {
 				File file = new File("lib", "jacob-1.19-x64.dll"); // path to the jacob dll
 				System.setProperty(LibraryLoader.JACOB_DLL_PATH, file.getAbsolutePath());
 
-//				autoIt = new AutoItX();
+				//autoIt = new AutoItX();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -140,15 +139,20 @@ public class AutoItFunctions implements ITestToolFunctions {
 	public void click(String locator, int x, int y) throws Exception {
 		ConfigAutoIt(locator);
 		if (x > 0 && y > 0)
-			autoIt.controlClick(autoItObj.title, autoItObj.text, autoItObj.controlID, "", 1, x, y);
+			if(!autoIt.controlClick(autoItObj.title, autoItObj.text, autoItObj.controlID, "", 1, x, y)){
+				throw new Exception("[click]: Error al ejecutar función en AutoIt");
+			}
 		else
 			click(locator);
 	}
 
 	@Override
 	public void click(String locator) throws Exception {
+		System.out.println("  >> Dando click en " + locator); 
 		ConfigAutoIt(locator);
-		autoIt.controlClick(autoItObj.title, autoItObj.text, autoItObj.controlID);
+		if(!autoIt.controlClick(autoItObj.title, autoItObj.text, autoItObj.controlID)){
+			throw new Exception("[click]: Error al ejecutar función en AutoIt");
+		}
 	}
 
 	@Override
@@ -175,7 +179,8 @@ public class AutoItFunctions implements ITestToolFunctions {
 	@Override
 	public void setValue(String locator, String value) throws Exception {
 		ConfigAutoIt(locator);
-		autoIt.ControlSetText(autoItObj.title, autoItObj.text, autoItObj.controlID, value);
+		if(!autoIt.ControlSetText(autoItObj.title, autoItObj.text, autoItObj.controlID, value))
+			throw new Exception("[setValue]: Error al ejecutar función en AutoIt");
 	}
 
 	@Override

@@ -20,30 +20,45 @@ public class Wait {
 		_testToolFunctions = testToolFunctions;
 		_executionConfigs = executionConfigs;
 	}
+	
+	public Wait(ITestToolFunctions testToolFunctions) {
+		_testToolFunctions = testToolFunctions;
+	}
 
 	public void executeAction(String repositoryType, Procedure procedure) throws Exception {
 
 		_procedure = procedure;
 		_attributes = GeneralHelper.getMapAttributes(_procedure);
 
+		String locator = "";
+		
+		if(repositoryType.equals("S"))
+			locator = GeneralHelper.getLocatorProcedure(Integer.parseInt(_executionConfigs.get("System.Locator")), procedure);
+		else if(repositoryType.equals("M"))
+			locator = GeneralHelper.getLocatorProcedure(Integer.parseInt(_executionConfigs.get("Mobile.Locator")), procedure);
+		
 		int methodId = (int) procedure.MethodId;
 
 		switch (methodId) {
 		case 74:
-			waitSeconds();
+			waitSeconds(GeneralHelper.cNull(_attributes.get("Sec")));
 			break;
 		case 57:
-			waitObject();
+			waitObject(
+					locator, 
+					GeneralHelper.cNull(_attributes.get("Sec")), 
+					GeneralHelper.cNull(_attributes.get("Condition")), 
+					GeneralHelper.cNull(_attributes.get("Identify"))
+					);
 			break;
 		default:
 			break;
 		}
 	}
 
-	private void waitSeconds() throws Exception {
+	private void waitSeconds(String seconds) throws Exception {
 		try {
 
-			String seconds = _attributes.get("Sec");
 			if (seconds == null || seconds.isEmpty())
 				seconds = "5";
 
@@ -60,12 +75,9 @@ public class Wait {
 		}
 	}
 
-	private void waitObject() throws Exception {
+	private void waitObject(String locator, String secondsToWait, String condition, String identify) throws Exception {
 		try {
 
-			String sec = _attributes.get("Sec");
-			String condition = _attributes.get("Condition") == null ? "Appear" : _attributes.get("Condition");
-			String identify = _attributes.get("Identify");
 
 			boolean exists = true;
 			if (condition.equals("Vanish"))
@@ -76,15 +88,15 @@ public class Wait {
 						_procedure);
 
 			if (identify.equals("//*[@id=\"btnReplicarItensPainel\"]"))
-				sec = "120";
+				secondsToWait = "120";
 
-			if (sec == null || sec.equals(""))
-				sec = "60";
+			if (secondsToWait == null || secondsToWait.equals(""))
+				secondsToWait = "60";
 
 			if (exists == true)
-				_testToolFunctions.WaitObjectVisibility(identify, Integer.parseInt(sec));
+				_testToolFunctions.WaitObjectVisibility(identify, Integer.parseInt(secondsToWait));
 			else
-				_testToolFunctions.waitObjectToVanish(identify, Integer.parseInt(sec));
+				_testToolFunctions.waitObjectToVanish(identify, Integer.parseInt(secondsToWait));
 		} catch (Exception e) {
 			e.printStackTrace();
 			// String methodName = new Object(){}.getClass().getEnclosingMethod().getName();

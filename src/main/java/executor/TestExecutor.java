@@ -186,6 +186,7 @@ public class TestExecutor {
 			}
 			System.out.println(procedure.CategoryMethodName + "." + procedure.MethodName
 					+ (procedure.Object.Name != null ? (" -> " + procedure.Object.Name) : ""));
+			procedure.Value = "***************";
 		} catch (Exception e) {
 			throw e;
 		} finally {

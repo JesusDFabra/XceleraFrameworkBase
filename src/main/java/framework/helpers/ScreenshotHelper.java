@@ -100,6 +100,8 @@ public class ScreenshotHelper {
 				System.out.print("Take screenshot: ...");
 			if (loops > 4)
 				System.out.print(".");
+			if(loops >50)
+				break;
 			loops++;
 		}
 		if (loops > 4)

@@ -25,8 +25,10 @@ import framework.data.entities.Capabilities;
 import framework.testtools.utils.SeleniumUtils;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MultiTouchAction;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.touch.offset.PointOption;
 
 import org.openqa.selenium.Dimension;
 
@@ -252,6 +254,7 @@ public class AppiumFunctions implements ITestToolFunctions {
 				capabilities.setCapability("automationName", "UiAutomator2");
 				capabilities.setCapability("avdArgs", "-no-window");
 				driver = new AndroidDriver<WebElement>(new URL("http://localhost:4723/wd/hub"), capabilities);
+				
 
 				break;
 			case "iOS":
@@ -283,8 +286,11 @@ public class AppiumFunctions implements ITestToolFunctions {
 		WebElement element = FindObject(locator);
 
 		if (x != 0 && y != 0) {
-			Actions actions = new Actions(driver);
-			actions.moveToElement(element, x, y).click().perform();
+//			Actions actions = new Actions(driver);
+//			actions.moveToElement(element, x, y).click().perform();
+			TouchAction<?> touch = new TouchAction<>(driver);
+			touch.tap(PointOption.point(element.getLocation().getX()+x, element.getLocation().getY()+y)).perform();
+			
 		} else
 			click(locator);
 	}

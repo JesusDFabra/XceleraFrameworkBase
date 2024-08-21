@@ -71,6 +71,7 @@ public class ScheduledExecution {
 
 			String url = this.ApiURL + "v1/executions/workers?workerName=" + hostname;
 			JSONObject json = readJsonFromUrl(url);
+			
 
 //			hostname = Character.isDigit(workerName.charAt(workerName.length() - 1)) ? "GMUDEXEC" : "GMUDEXEC_HEADLESS";
 //

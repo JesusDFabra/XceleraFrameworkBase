@@ -2,8 +2,6 @@ package framework.data.dynamicValues;
 
 import java.util.Map;
 
-import framework.custom.Custom;
-
 public class DynamicValuesDatabase {
 
 	private Map<String, String> _executionConfigs;

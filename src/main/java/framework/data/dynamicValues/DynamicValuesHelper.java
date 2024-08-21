@@ -9,8 +9,6 @@ import java.util.UUID;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import framework.RestWebService;
-import framework.custom.Custom;
 import framework.custom.entities.StaticFields;
 import framework.data.entities.LayoutFileData;
 import framework.data.entities.Procedure;
@@ -74,6 +72,39 @@ public class DynamicValuesHelper {
 		if (!value.toLowerCase().contains("<ignore>")) {
 			System.err.println("valor: " + value);
 		}
+		
+		//======== new Dynamic functions
+		
+		if(value.toLowerCase().contains("#get_name")) {
+			value = "nombre123";
+		}
+		
+		if(value.toLowerCase().contains("#set_id_prueba")) {
+			int id = Integer.parseInt(value.substring(value.indexOf("(") + 1, value.indexOf(")")));
+			DynamicValuesCustomData.setIdPrueba(id);
+		}
+		
+		if(value.toLowerCase().contains("#get_nombre()")) {
+			value = DynamicValuesCustomData.getNombre();
+		}
+		 //------------- Pruenas con funciones dinamicas ---------------
+		if(value.toLowerCase().contains("#get_first_name(")){
+			value = DynamicValuesCustomData.getFirstName();
+		}
+
+		if(value.toLowerCase().contains("#get_last_name(")){
+			value = DynamicValuesCustomData.getLastName();
+		}
+
+		if(value.toLowerCase().contains("#get_username(")){
+			value = DynamicValuesCustomData.getUsername();
+		}
+
+		if(value.toLowerCase().contains("#get_password(")){
+			value = DynamicValuesCustomData.getPassword();
+		}
+
+		//======================
 
 		if (toCache)
 			StaticFields.setLIST_DATA_CACHED(chave, value);

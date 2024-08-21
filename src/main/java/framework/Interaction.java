@@ -240,6 +240,7 @@ public class Interaction {
 				return;
 			}
 			_testToolFunctions.setValue(locator, value);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 

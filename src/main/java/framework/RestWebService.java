@@ -60,12 +60,12 @@ public class RestWebService {
 
 	public void executeAction(long testTypeId, WebServiceData webServiceData) throws Exception {
 
-//		String strUrl = webServiceData.Endpoint + "/" + webServiceData.Resource;
+		String strUrl = webServiceData.Endpoint + "/" + webServiceData.Resource;
 
-		_dominio = _executionConfigs.get("Custom.dominio");
-
-		String strUrl = _dominio + webServiceData.Endpoint + "/" + webServiceData.Resource;
-		// {{dominio}}
+//		_dominio = _executionConfigs.get("Custom.dominio");
+//
+//		String strUrl = _dominio + webServiceData.Endpoint + "/" + webServiceData.Resource;
+//		// {{dominio}}
 		if (strUrl.contains("{{dominio}}"))
 			strUrl = strUrl.replace("{{dominio}}", "");
 

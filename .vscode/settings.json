@@ -1,3 +1,8 @@
 {
-    "java.compile.nullAnalysis.mode": "automatic"
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "C:\\Users\\Usuario\\Desktop\\HDI\\Xcelera\\Frameworks\\XCELERA-javaframework-Base-new\\Lib\\ojdbc10.jar"
+    ]
 }

@@ -24,7 +24,7 @@ public class DynamicValuesCustomData {
 	final static String abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	static Random random = new Random();
 	public static HashMap<String, String> datosPruebas;
-	static final Logger logger=Logger.getLogger(DynamicValuesCustomData.class.getName());
+	static final Logger logger = Logger.getLogger(DynamicValuesCustomData.class.getName());
 
 	ConfigFileReader f = new ConfigFileReader("configs/config.properties");
 
@@ -170,7 +170,7 @@ public class DynamicValuesCustomData {
 			// String url = String.format("jdbc:sqlserver://%s/%s",
 			// executionConfigs.get("TDM.Hostname"),
 			// executionConfigs.get("TDM.DatabaseName"));
-			// conn = DriverManager.getConnection(url, executionConfigs.get("TDM.Username"),
+			// connection = DriverManager.getConnection(url, executionConfigs.get("TDM.Username"),
 			// executionConfigs.get("TDM.Password"));
 			String url = String.format("jdbc:sqlserver://%s;databaseName=%s;user=%s;password=%s;",
 					executionConfigs.get("TDM.Hostname"), executionConfigs.get("TDM.DatabaseName"),
@@ -281,7 +281,6 @@ public class DynamicValuesCustomData {
 		for (int i = 0; i < 6; i++) {
 			builder = getRandomNumeroChar(builder);
 		}
-
 		return builder.toString();
 	}
 	
@@ -295,12 +294,8 @@ public class DynamicValuesCustomData {
 		datosPruebas = new HashMap<>();
 		datosPruebas = getDatosRecordTabla(query);
 	}
-	
-	public static String getNombre() {
-		return datosPruebas.get("Nombre");
-	}
 
-	/////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////
 	public static String getFirstName() {
 		return datosPruebas.get("first_name");
 	}
@@ -313,20 +308,20 @@ public class DynamicValuesCustomData {
 	public static String getPassword() {
 		return datosPruebas.get("password");
 	}
-	
+	/////////////////////////////////////////////////////////////////////////
+
 	public static HashMap<String, String> getDatosRecordTabla(String query) throws SQLException {
-        ResultSet rs;
-        Connection conn;
+        ResultSet resultSet;
+        Connection connection;
         HashMap<String, String> map = new HashMap<>();
 
         try{
-			conn = ConexionDB.util().conectar("connectionString1");
-
-			BaseDatosAplicacion bda = new BaseDatosAplicacion();
-        	rs = bda.ejecutarConsulta(query, conn);
-        	map = llenarHashConResultSet(rs);
-        	
-        	ConexionDB.util().desconectar(conn);
+			connection = ConexionDB.util().conectar("connectionStringH2");
+			
+			BaseDatosAplicacion bda = new BaseDatosAplicacion();		
+        	resultSet = bda.ejecutarConsulta(query, connection);
+			map = llenarHashConResultSet(resultSet);
+        	ConexionDB.util().desconectar(connection);
         	
         	return map;
         }catch(Exception ex){
@@ -336,18 +331,17 @@ public class DynamicValuesCustomData {
     }
 	
 	private static HashMap<String,String> llenarHashConResultSet(ResultSet resultSet) throws SQLException {
-
         HashMap<String,String> hashMap = new HashMap<>();
-
         if(resultSet != null) {
             while(resultSet.next()) {
-                for(int i=1;i<=resultSet.getMetaData().getColumnCount();i++){
-                    String nombreCampo = resultSet.getMetaData().getColumnName(i);
+                for(int i=1 ; i <= resultSet.getMetaData().getColumnCount() ; i++){
+					String nombreCampo = resultSet.getMetaData().getColumnName(i).toLowerCase();
                     String valorCampo = resultSet.getObject(i)== null?"":resultSet.getObject(i).toString();
+
                     hashMap.put(nombreCampo, valorCampo);
                 }
             }
-        }
+		}
         return hashMap;
     }
 }

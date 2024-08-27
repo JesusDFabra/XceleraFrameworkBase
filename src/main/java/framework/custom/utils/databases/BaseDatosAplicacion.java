@@ -29,7 +29,7 @@ public class BaseDatosAplicacion {
         }catch(SQLException e){
             logger.log(Level.SEVERE,() -> CONNECTION_FAILURE + e.getMessage());
         }catch(Exception ex){
-            logger.log(Level.SEVERE,() ->DRIVER_NOT_FOUND + ex.getMessage() );
+            logger.log(Level.SEVERE,() -> DRIVER_NOT_FOUND + ex.getMessage() );
         }
         return rs;
     }

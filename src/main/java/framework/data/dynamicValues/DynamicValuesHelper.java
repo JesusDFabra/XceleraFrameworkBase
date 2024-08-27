@@ -83,10 +83,8 @@ public class DynamicValuesHelper {
 			int id = Integer.parseInt(value.substring(value.indexOf("(") + 1, value.indexOf(")")));
 			DynamicValuesCustomData.setIdPrueba(id);
 		}
-		
-		if(value.toLowerCase().contains("#get_nombre()")) {
-			value = DynamicValuesCustomData.getNombre();
-		}
+
+
 		 //------------- Pruenas con funciones dinamicas ---------------
 		if(value.toLowerCase().contains("#get_first_name(")){
 			value = DynamicValuesCustomData.getFirstName();
@@ -104,11 +102,8 @@ public class DynamicValuesHelper {
 			value = DynamicValuesCustomData.getPassword();
 		}
 
-		//======================
-
 		if (toCache)
 			StaticFields.setLIST_DATA_CACHED(chave, value);
-
 		return value;
 	}
 
@@ -213,5 +208,4 @@ public class DynamicValuesHelper {
 		dateFirstPayment = formatador.format(c.getTime()).toString();
 		return dateFirstPayment;
 	}
-
 }

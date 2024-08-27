@@ -9,8 +9,8 @@ public class HolaMundo implements IPerformableProcedure {
   
   @Override
   public void executeCustomProcedure() throws Exception {
-      System.out.println("  ..........................................................");
-      System.out.println("  . Ejecutando Hola mundo desde xcelera con patron factory .");
-      System.out.println("  ..........................................................");
+      System.out.println("  ...........................................................");
+      System.out.println("  . Imprimiendo Hola Mundo desde xcelera con patron factory .");
+      System.out.println("  ...........................................................");
   }
 }

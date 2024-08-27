@@ -15,7 +15,9 @@ public class GestorConexiones {
     static final Logger logger = Logger.getLogger(GestorConexiones.class.getName());
     private Connection conexion;
 
-    public static GestorConexiones util(){return new GestorConexiones();}
+    public static GestorConexiones util(){
+        return new GestorConexiones();
+    }
 
     public Connection getConnection() {
         return conexion;
@@ -29,12 +31,11 @@ public class GestorConexiones {
         try {
             String[] parts = strCon.split(":");
             String driver = parts[1];
-            
+        
             Class.forName(AppProperties.getDriverConexion(driver));
-            
             conexion = DriverManager.getConnection(strCon);
             
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch ( SQLException | ClassNotFoundException  ex) { //ClassNotFoundException |
             logger.log(Level.SEVERE,() -> CONNECTION_FAILURE + ex.getMessage());
         }
     }

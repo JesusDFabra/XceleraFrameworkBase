@@ -22,7 +22,6 @@ public class Custom {
 	private Map<String, String> _attributes;
 	private String _valueFromTestProcedure;
 	private String _locator;
-	
 
 
 	public Custom(ITestToolFunctions testToolFunctions, Map<String, String> executionConfigs,
@@ -82,4 +81,3 @@ public class Custom {
 		_procedureBase.executeCustomProcedure();
 	}
 }
- 

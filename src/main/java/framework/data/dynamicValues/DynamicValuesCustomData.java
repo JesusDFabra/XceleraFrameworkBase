@@ -335,7 +335,7 @@ public class DynamicValuesCustomData {
         if(resultSet != null) {
             while(resultSet.next()) {
                 for(int i=1 ; i <= resultSet.getMetaData().getColumnCount() ; i++){
-					String nombreCampo = resultSet.getMetaData().getColumnName(i).toLowerCase();
+					String nombreCampo = resultSet.getMetaData().getColumnName(i);//.toLowerCase();
                     String valorCampo = resultSet.getObject(i)== null?"":resultSet.getObject(i).toString();
 
                     hashMap.put(nombreCampo, valorCampo);
